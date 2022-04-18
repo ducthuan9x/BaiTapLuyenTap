@@ -2,10 +2,9 @@ package BaiDanhSachNguoi;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 
-public class KhuPho {
+public class KhuPho extends HoGiaDinh {
     ArrayList<HoGiaDinh>hoGiaDinhs = new ArrayList<>();
 
     public KhuPho() {
@@ -16,7 +15,7 @@ public class KhuPho {
     }
     public void disPlayTown(){
         for (int i=0;i<hoGiaDinhs.size();i++){
-            this.hoGiaDinhs.get(i).display();
+            System.out.println( this.hoGiaDinhs.get(i).toString());
         }
     }
     public int seachTown(String diaChi){
@@ -56,19 +55,6 @@ public class KhuPho {
     }
 
         public void agemin() {
-            Collections.sort(this.hoGiaDinhs, new Comparator<HoGiaDinh>() {
-                @Override
-                public int compare(HoGiaDinh hoGiaDinh1, HoGiaDinh hoGiaDinh2) {
-                    if(hoGiaDinh1.getSoThanhVien()>hoGiaDinh2.getSoThanhVien()){
-                        return 1;
-                    }
-                    else if (hoGiaDinh1.getSoThanhVien()<hoGiaDinh2.getSoThanhVien()){
-                        return -1;
-                    }
-                    else{
-                        return 0;
-                    }
-                }
-            });
+            Collections.sort(hoGiaDinhs);
         }
 }

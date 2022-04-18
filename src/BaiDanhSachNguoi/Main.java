@@ -12,67 +12,140 @@ public class Main {
         KhuPho khuPho = new KhuPho();
 
         Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         qlkp.hienMenuKhuPho();
-        int choice = scanner.nextInt();
+        int choice = 0;
+        choice = scanner.nextInt();
         scanner.nextLine();
 
         if (choice == 1) {
             qlkp.hienMenuGiaDinh();
-
-            int choice1 = scanner.nextInt();
-            scanner.nextLine();
-
-            if (choice1 == 3) {
-                qlkp.hienMenuKhuPho();
-            } else if (choice1 == 1) {
-                System.out.println("nhâp tên thành viên");
-                String ten = scanner.nextLine();
-                System.out.println("nhâp số cmnd");
-                String soCmnd = scanner.nextLine();
-                System.out.println("nhâp nghề nghiệp thành viên");
-                String nghe = scanner.nextLine();
-                System.out.println("nhâp tuổi thành viên");
-                int tuoi = scanner.nextInt();
-                System.out.println("nhâp địa chỉ thành viên");
-                String diaChi = scanner.nextLine();
-                System.out.println("nhâp số thành viên");
-                int soThanhVien = scanner.nextInt();
-            }
+        } else if (choice == 2) {
+            qlkp.hienMenuPhoPhaHoai();
         } else {
             System.exit(0);
         }
+        int choice1 = 0;
+        int choice2 = 0;
+        do {
+            choice1 = scanner.nextInt();
+            scanner.nextLine();
+            if (choice1 == 1) {
+//                thêm thành viên
+                System.out.println("nhâp tên thành viên");
+                String ten = sc.nextLine();
+                System.out.println("nhâp số cmnd");
+                String soCmnd = sc.nextLine();
+                System.out.println("nhâp nghề nghiệp thành viên");
+                String nghe = sc.nextLine();
+                System.out.println("nhâp tuổi thành viên");
+                int tuoi = scanner.nextInt();
+                System.out.println("nhâp địa chỉ thành viên");
+                String diaChi = sc.nextLine();
+                hoGiaDinh.add(new Nguoi(ten, soCmnd, nghe, tuoi));
+                hoGiaDinh.setDiaChi(diaChi);
+                hoGiaDinh.display();
+            } else if (choice1 == 2) {
+//                 sửa thành viên
+                System.out.println("nhâp số cmnd ");
+                String soCmnd1 = sc.nextLine();
+                System.out.println("nhâp tên thành viên");
+                String ten = sc.nextLine();
+                System.out.println("nhâp số cmnd");
+                String soCmnd = sc.nextLine();
+                System.out.println("nhâp nghề nghiệp thành viên");
+                String nghe = sc.nextLine();
+                System.out.println("nhâp tuổi thành viên");
+                int tuoi = scanner.nextInt();
+                System.out.println("nhâp địa chỉ thành viên");
+                String diaChi = sc.nextLine();
+                Nguoi nguoi1 = new Nguoi(ten, soCmnd, nghe, tuoi);
+                hoGiaDinh.setDiaChi(diaChi);
+                hoGiaDinh.edit(soCmnd1, nguoi1);
+                hoGiaDinh.display();
+            } else if (choice1 == 3) {
+//         xoá thành viên theo số cmnd
+                System.out.println("nhâp số cmnd ");
+                String soCmnd1 = sc.nextLine();
+                hoGiaDinh.delete(soCmnd1);
+                hoGiaDinh.display();
+            } else if (choice1 == 4) {
+//              tìm kiếm theo tên
+                System.out.println("nhâp tên thành viên");
+                String ten = sc.nextLine();
+                hoGiaDinh.seachName(ten);
+                hoGiaDinh.display();
+            } else if (choice1 == 5) {
+//               hiển thị người nhỏ tuổi nhất
+                hoGiaDinh.ageMin();
+            } else {
+                System.exit(0);
+            }
+        } while (choice1 != 0);
+        do {
+            choice2 = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice2 == 1) {
+//                thêm thành viên
+                System.out.println("nhâp tên thành viên");
+                String ten = sc.nextLine();
+                System.out.println("nhâp số cmnd");
+                String soCmnd = sc.nextLine();
+                System.out.println("nhâp nghề nghiệp thành viên");
+                String nghe = sc.nextLine();
+                System.out.println("nhâp tuổi thành viên");
+                int tuoi = scanner.nextInt();
+                System.out.println("nhâp địa chỉ thành viên");
+                String diaChi = sc.nextLine();
+                hoGiaDinh.add(new Nguoi(ten, soCmnd, nghe, tuoi));
+                hoGiaDinh.setDiaChi(diaChi);
+                khuPho.addTown(hoGiaDinh);
+                khuPho.disPlayTown();
+            } else if (choice2 == 2) {
+//                 sửa thành viên
+                System.out.println("nhâp số cmnd ");
+                String soCmnd1 = sc.nextLine();
+                System.out.println("nhâp tên thành viên");
+                String ten = sc.nextLine();
+                System.out.println("nhâp số cmnd");
+                String soCmnd = sc.nextLine();
+                System.out.println("nhâp nghề nghiệp thành viên");
+                String nghe = sc.nextLine();
+                System.out.println("nhâp tuổi thành viên");
+                int tuoi = scanner.nextInt();
+                System.out.println("nhâp địa chỉ thành viên");
+                String diaChi = sc.nextLine();
+                hoGiaDinh.add(new Nguoi(ten, soCmnd, nghe, tuoi));
+                hoGiaDinh.setDiaChi(diaChi);
+                khuPho.editTown(soCmnd,hoGiaDinh);
+            }
+            else if(choice2==3){
+//         xoá thành viên theo số cmnd
+                System.out.println("nhâp số cmnd ");
+                String soCmnd1 = sc.nextLine();
+                khuPho.deleteTown(soCmnd1);
+                khuPho.disPlayTown();
+            }
+            else if(choice2==4){
+//              tìm kiếm theo dia chi
+                System.out.println("nhâp tên thành viên");
+                String diaChi = sc.nextLine();
+                khuPho.seachTown(diaChi);
+                hoGiaDinh.display();
+            }else if(choice2==5){
+//               hiển thị ho gia dinh co nhieu thanh vien
+                khuPho.maxMenber();
+            }else if(choice2==6){
+//      sap xep tuoi
+                khuPho.agemin();
+                khuPho.disPlayTown();
+            }
+            }
+            while (choice2 != 0) ;
 
 
-//        hoGiaDinh.add(new Nguoi("hh", "0191222", "gv", 12));
-//        hoGiaDinh.setDiaChi("hà lội");
-//        hoGiaDinh.setSoThanhVien(4);
-//        hoGiaDinh.display();
-//        Nguoi nguoi1=new Nguoi("kk","123456","nd",15);
-//        Nguoi nguoi2=new Nguoi("lll","323456","hs",5);
-//        Nguoi nguoi3= new Nguoi("dd","sv1235","sv",6);
-//        hoGiaDinh.add(nguoi2);
-//        hoGiaDinh.edit("0191222",nguoi1);
-//
-//        hoGiaDinh.ageMin();
-//        hoGiaDinh.display();
-//        hoGiaDinh.delete("123456");
-//        hoGiaDinh.display();
 
-
-//
-//        HoGiaDinh hoGiaDinh1=new HoGiaDinh("ha noi", 3);
-//        hoGiaDinh1.add(nguoi1);
-//        HoGiaDinh hoGiaDinh2= new HoGiaDinh("ha nam", 5);
-//        hoGiaDinh2.add(nguoi2);
-//        HoGiaDinh hoGiaDinh3=new HoGiaDinh("thanh hoa",8);
-//        hoGiaDinh3.add(nguoi3);
-//
-//        KhuPho khuPho=new KhuPho();
-//        khuPho.addTown(hoGiaDinh1);
-//        khuPho.addTown(hoGiaDinh2);
-//        khuPho.addTown(hoGiaDinh3);
-//        khuPho.editTown("ha noi",hoGiaDinh3);
-//        khuPho.disPlayTown();
+        }
     }
-}
 

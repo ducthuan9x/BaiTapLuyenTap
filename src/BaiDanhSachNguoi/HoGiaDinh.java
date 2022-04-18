@@ -1,15 +1,13 @@
 package BaiDanhSachNguoi;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
-public class HoGiaDinh {
+
+public class HoGiaDinh implements Comparable<HoGiaDinh>{
     private final ArrayList<Nguoi>giaDinh = new ArrayList<>();
     private String diaChi;
-    private int soThanhVien;
-    private int count=0;
+    private int soThanhVien=0;
+
 
     public HoGiaDinh() {
 
@@ -35,25 +33,19 @@ public class HoGiaDinh {
         this.soThanhVien = soThanhVien;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public void add(Nguoi nguoi){
 
             this.giaDinh.add(nguoi);
-             count++;
+             soThanhVien++;
 
     }
     public void display(){
         for(int i=0;i<giaDinh.size();i++){
-            System.out.println(this.giaDinh.get(i));
+            System.out.println(this.giaDinh.get(i).toString());
         }
-        System.out.println("địa chỉ "+ diaChi+ " số thành viên "+ soThanhVien);
+        System.out.println("địa chỉ "+ getDiaChi()+ ", số thành viên "+ soThanhVien);
 
     }
 
@@ -72,6 +64,7 @@ public class HoGiaDinh {
         }
         else {
             giaDinh.set(indexOfCmnd,nguoi);
+
         }
     }
     public void delete(String soCmnd){
@@ -81,6 +74,7 @@ public class HoGiaDinh {
         }
         else {
             giaDinh.remove(indexOfCmnd);
+            soThanhVien--;
         }
     }
     public int seachName(String ten) {
@@ -101,21 +95,20 @@ public class HoGiaDinh {
         System.out.println("thành viên nhỏ tuổi nhất "+ min);
     }
 
-//    public void agemin(){
-//        Collections.sort(this.giaDinh, new Comparator<Nguoi>() {
-//            @Override
-//            public int compare(Nguoi nguoi1, Nguoi nguoi2) {
-//                if(nguoi1.getTuoi()<nguoi2.getTuoi()){
-//                    return -1;
-//                }
-//                else if(nguoi1.getTuoi()>nguoi2.getTuoi()){
-//                    return 1;
-//                }
-//                else{
-//                    return 0;
-//                }
-//            }
-//        });
-//    }
 
+
+
+    @Override
+    public int compareTo(HoGiaDinh o) {
+        return this.getSoThanhVien()-o.getSoThanhVien();
+    }
+
+    @Override
+    public String toString() {
+        return "HoGiaDinh{" +
+                "giaDinh=" + giaDinh +
+                ", diaChi='" + diaChi + '\'' +
+                ", soThanhVien=" + soThanhVien +
+                '}';
+    }
 }
