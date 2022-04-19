@@ -78,7 +78,11 @@ public class Main {
             } else if (choice1 == 5) {
 //               hiển thị người nhỏ tuổi nhất
                 hoGiaDinh.ageMin();
-            } else {
+            }
+            else if(choice1==6) {
+                qlkp.hienMenuKhuPho();
+            }
+            else {
                 System.exit(0);
             }
         } while (choice1 != 0);
